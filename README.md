@@ -1,5 +1,5 @@
 # product-ms
-Microserviço para gerenciamento de Catalogo de Produto
+Microserviço para gerenciamento de Catálogo de Produtos
 
 # Banco de Dados (Não precisa alterar nada)
 - spring.datasource.url=jdbc:h2:mem:file:/db-desafio-java
