@@ -18,7 +18,7 @@ public interface ProductRepository extends JpaRepository<Product, Integer> {
             " ( ( :minPrice is not null AND p.price >= :minPrice ) AND " +
             "   ( :maxPrice is null AND :q is null) ) OR " +
 
-            " ( ( :maxPrice is not null AND p.price >= :maxPrice ) AND " +
+            " ( ( :maxPrice is not null AND p.price <= :maxPrice ) AND " +
             "   ( :minPrice is null AND :q is null) ) OR " +
 
             " ( ( :minPrice is not null AND p.price >= :minPrice ) AND " +

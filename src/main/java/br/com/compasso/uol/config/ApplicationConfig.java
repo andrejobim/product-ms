@@ -36,7 +36,8 @@ public class ApplicationConfig  {
         return new Docket(DocumentationType.SWAGGER_2)
                 .select()
                 .apis(RequestHandlerSelectors.basePackage("br.com.compasso.uol.controller"))
-                .paths(Predicates.not(PathSelectors.regex("/")))
+                .paths(PathSelectors.any())
+//                .paths(Predicates.not(PathSelectors.regex("/")))
                 .build()
                 .apiInfo(apiEndPointsInfo());
     }
