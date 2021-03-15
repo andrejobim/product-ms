@@ -13,7 +13,7 @@ OBS: As informações inseridas no banco ficaram presentes enquanto o projeto es
 Foi colocado Swagger para documentação dos endpoints.
 
 # Build
-mvn clean install (Vair todas os testes)
+mvn clean install (Vai rodar todos os testes)
 
 # Jar
 java -jar product-ms-0.0.1-SNAPSHOT.jar
