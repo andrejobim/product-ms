@@ -6,6 +6,8 @@ import br.com.compasso.uol.exception.ProductNotFoundException;
 import br.com.compasso.uol.repo.ProductRepository;
 import org.apache.commons.lang3.ObjectUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,11 +17,17 @@ import java.util.List;
 @Service
 public class ProductService {
 
+    private static final Logger LOG = LoggerFactory.getLogger(ProductService.class);
+
     @Autowired
     private ProductRepository productRepository;
 
     public Product save(ProductModel productModel){
         validateProductModel(productModel);
+
+        LOG.info(String.format("Save Product : Name: %s, Description: %s, Price: %s",productModel.getName(),
+                productModel.getDescription(),String.valueOf(productModel.getPrice())));
+
         Product product = createProduct(productModel);
         productRepository.save(product);
         return product;
@@ -28,6 +36,10 @@ public class ProductService {
     public Product update(Integer id, ProductModel productModel) {
         hasProductWithId(id);
         validateProductModel(productModel);
+
+        LOG.info(String.format("Update Product : ID: %d, Name: %s, Description: %s, Price: %s",id, productModel.getName(),
+                productModel.getDescription(),String.valueOf(productModel.getPrice())));
+
         Product product = mergeProductModel(id, productModel);
         productRepository.save(product);
         return product;
@@ -35,11 +47,13 @@ public class ProductService {
 
     public void delete(Integer id) {
         hasProductWithId(id);
+        LOG.info(String.format("Delete Product ID: %d",id));
         productRepository.deleteById(id);
     }
 
     public Product findProductByIdIfNotExistException(Integer id) {
         hasProductWithId(id);
+        LOG.info(String.format("Find Product ID: %d",id));
         return productRepository.findById(id).get();
     }
 
